@@ -56,7 +56,7 @@ function addItem(e){
             console.log(response.data.message);
             var message=document.createElement('div')
             message.classList.add('message')
-           //console.log(response,'localhost:3000/user/add-user');
+           //console.log(response,'18.183.209.117:3000/user/add-user');
            const msgcontent=`<span class="message">${response.data.message}</span>`
            message.innerHTML=msgcontent
            msgrow.append(message)

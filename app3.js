@@ -2,7 +2,7 @@ const path = require('path');
 const fs=require('fs')
 const express = require('express');
 const bodyParser = require('body-parser');
-const helmet=require('helmet');
+//const helmet=require('helmet');
 const https=require('https')
 const dotenv = require('dotenv');
 dotenv.config();
@@ -25,8 +25,8 @@ app.set('views', 'views');
 app.use(bodyParser.json({ extended: false }));
 
 const accessLogstream=fs.createWriteStream(path.join(__dirname,'access.log'),{flage:'a'})
-app.use(helmet());
-app.use(morgan('combined',{stream:accessLogstream}))
+//app.use(helmet());
+//app.use(morgan('combined',{stream:accessLogstream}))
 //app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.json());
 var cors=require('cors');
@@ -41,6 +41,10 @@ app.use(expenseRoutes)
 
 app.use('/purchase',premiumRoutes)
 app.use('/password', resetPasswordRoutes);
+app.use((req,res)=>{
+    console.log("45",req.url);
+    res.sendFile(path.join(__dirname,`${req.url}`))
+})
 
 Expuser.hasMany(Expense);
 Expense.belongsTo(Expuser)
