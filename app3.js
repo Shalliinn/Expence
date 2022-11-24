@@ -43,6 +43,7 @@ app.use('/purchase',premiumRoutes)
 app.use('/password', resetPasswordRoutes);
 app.use((req,res)=>{
     console.log("45",req.url);
+    console.log('111')
     res.sendFile(path.join(__dirname,`${req.url}`))
 })
 
