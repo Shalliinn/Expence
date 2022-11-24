@@ -51,7 +51,7 @@ function addItem(e){
             password:password.value
         }
     console.log(UserDetails);
-        axios.post("http://localhost:3000/user/signup",UserDetails)
+        axios.post("http://18.183.209.117:3000/user/signup",UserDetails)
         .then((response)=>{
             console.log(response.data.message);
             var message=document.createElement('div')

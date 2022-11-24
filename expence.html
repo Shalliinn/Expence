@@ -179,13 +179,13 @@ exp_per_page=localStorage.getItem('exp_per_page')||2
     async function newUser(Obj)
      {
       const token=localStorage.getItem('token')
-       let data=await axios.post("http://localhost:3000/add-expense",Obj,{headers:{'Authorization':token}})
+       let data=await axios.post("http://18.183.209.117:3000/add-expense",Obj,{headers:{'Authorization':token}})
        showonscreen(Obj);
      }
 
     async function editUser(Obj)
      {
-        let data2=await axios.post(`http://localhost:3000/edit-expense/${usrid}`,Obj)
+        let data2=await axios.post(`http://18.183.209.117:3000/edit-expense/${usrid}`,Obj)
         showonscreen(Obj);
      }
 
@@ -201,7 +201,7 @@ exp_per_page=localStorage.getItem('exp_per_page')||2
       e.preventDefault();
       userList.innerHTML='';
       console.log(i);
-     axios.get(`http://localhost:3000/get-expense/${exp_per_page}/?page=${i}`,{headers:{'Authorization':token}}).then((response)=>{
+     axios.get(`http://18.183.209.117:3000/get-expense/${exp_per_page}/?page=${i}`,{headers:{'Authorization':token}}).then((response)=>{
       response = Object.freeze(response);  //add this line before your console.log
         console.log(response.data,'237');
         for(var j=0;j<response.data.expense.length;j++){
@@ -224,7 +224,7 @@ function button(page,totalexp,lastpage){
       userList.innerHTML='';
       //doc.innerHTML='';
       console.log(i);
-     axios.get(`http://localhost:3000/get-expense/${exp_per_page}/?page=${i}`,{headers:{'Authorization':token}}).then((response)=>{
+     axios.get(`http://18.183.209.117:3000/get-expense/${exp_per_page}/?page=${i}`,{headers:{'Authorization':token}}).then((response)=>{
       response = Object.freeze(response);  //add this line before your console.log
         console.log(response.data.user,'237');
        for(let j=0;j<response.data.user.length;j++){
@@ -248,7 +248,7 @@ function button(page,totalexp,lastpage){
       userList.innerHTML=''
       doc.innerHTML=''
       const token=localStorage.getItem('token')
-        let response=await axios.get(`http://localhost:3000/get-expense/${exp_per_page}/?page=${id}`,{headers:{'Authorization':token}});
+        let response=await axios.get(`http://18.183.209.117:3000/get-expense/${exp_per_page}/?page=${id}`,{headers:{'Authorization':token}});
       console.log(response,'174');
 
    // console.log(response.data.name,'146');
@@ -303,7 +303,7 @@ showfile(response.data)
 
 
 function download(){
-    axios.get('http://localhost:3000/download', { headers: {"Authorization" : token} })
+    axios.get('http://18.183.209.117:3000/download', { headers: {"Authorization" : token} })
     .then((response) => {
       console.log(response.data,'182');
         if(response.status === 200){
@@ -347,7 +347,7 @@ ul.appendChild(li)
      {try{
       console.log(id,'342');
       const token=localStorage.getItem('token')
-            let response =   await axios.delete(`http://localhost:3000/delete-expense/${id}`,{headers:{'Authorization':token}})
+            let response =   await axios.delete(`http://18.183.209.117:3000/delete-expense/${id}`,{headers:{'Authorization':token}})
             console.log(response);
      }
      catch{
@@ -360,7 +360,7 @@ ul.appendChild(li)
 
     // async function edit(li)
     //   {
-    //     let response=await axios.get("http://localhost:3000/get-expense")
+    //     let response=await axios.get("http://18.183.209.117:3000/get-expense")
 
     //  for(var i=0;i<response.data.Allexp.length;i++){
     //     if(li.innerHTML.indexOf(response.data.Allexp[i].description)!=-1){
@@ -375,7 +375,7 @@ ul.appendChild(li)
 
 document.getElementById('rzp-button1').onclick = async function (e) {
   e.preventDefault();
-   const response  = await axios.get('http://localhost:3000/purchase/premiummembership', { headers: {"Authorization" : token} });
+   const response  = await axios.get('http://18.183.209.117:3000/purchase/premiummembership', { headers: {"Authorization" : token} });
     console.log(response);
     var options =
     {
@@ -393,7 +393,7 @@ document.getElementById('rzp-button1').onclick = async function (e) {
      // This handler function will handle the success payment
      "handler": function (response) {
          console.log(response);
-         axios.post('http://localhost:3000/purchase/updatetransactionstatus',{
+         axios.post('http://18.183.209.117:3000/purchase/updatetransactionstatus',{
              order_id: options.order_id,
              payment_id: response.razorpay_payment_id,
          }, { headers: {"Authorization" : token} }).then(() => {
