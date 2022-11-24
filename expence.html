@@ -326,8 +326,8 @@ function download(){
 
 function showfile(Data){
 const files=Data.file;
+console.log(Data);
 var ul=document.getElementById('numbers')
-    ul.innerHTML='';
     for(var j=0;j<files.length;j++){
 let b= document.createElement('a');
 let li=document.createElement('li')
@@ -336,7 +336,9 @@ b.innerHTML=`file-${j}`
 li.appendChild(b)
 ul.appendChild(li)
     }
+    console.log(ul);
     dom.appendChild(ul)
+    console.log(dom);
   }
 
 
